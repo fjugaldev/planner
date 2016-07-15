@@ -4,9 +4,9 @@
 parameters:
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     planner
     database_user:     root
-    database_password: ~
+    database_password: root
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
@@ -17,3 +17,19 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Language Options
+    locale: es
+    locales.string: en|es|pt
+    locales.array:
+        - en
+        - es
+        - pt
+
+    # Theme Options
+    theme_backend: sbadmin2
+    theme_frontend: sbadmin2
+
+    #Site Options
+    site_name: Planner
+    version: '1.0'
