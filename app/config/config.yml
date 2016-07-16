@@ -54,8 +54,24 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        #naming_strategy: doctrine.orm.naming_strategy.underscore
+        #auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_translator:
+                        type: annotation
+                        prefix: Gedmo\Translator\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                        alias: GedmoTranslator # (optional) it will default to the name set for the mapping
+                        is_bundle: false
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -70,3 +86,106 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
+
+#ManuelTranslationBundle
+manuel_translation:
+    locales: [en, es] # Se deben definir los locales que el translator usará
+    bundles:          # Los bundles de donde serán leidas las traducciones para pasarlas a la Base de Datos.
+#        - AppBundle
+
+#StofDoctrineBundle
+stof_doctrine_extensions:
+    default_locale: %locale%
+    translation_fallback: true
+    orm:
+        default:
+            translatable: true
+            timestampable: true
+
+#FOSRestBundle
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+#KnpMenuBundle
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: knp_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+
+
+#KnpPaginatorBundle
+knp_paginator:
+    page_range: 10                     # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+#NelmioApiDocBundle
+nelmio_api_doc: ~
+
+#LiipImagineBundle
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }
+
+#GuzzleHttpBundle
+guzzle:
+    clients:
+        api_payment:
+            base_url: "http://api.domain.tld"
+
+            # custom headers
+            headers:
+                Accept: "application/json"
+
+            # guzzle client options (full description here: http://guzzle.readthedocs.org/en/latest/request-options.html)
+            # NOTE: "headers" option is not accepted here as it is provided as described above.
+            options:
+                auth:
+                    - acme     # login
+                    - pa55w0rd # password
+                timeout: 30
+
+            # plugin settings
+            plugin:
+                wsse:
+                    username:   "acme"
+                    password:   "pa55w0rd"
+                    created_at: "-10 seconds" # optional
+
+        api_crm:
+            base_url: "http://api.crm.tld"
+            headers:
+                Accept: "application/json"

@@ -19,9 +19,50 @@ class AppKernel extends Kernel
             //FOSUserBundle()
             new FOS\UserBundle\FOSUserBundle(),
 
+            //StofDoctrineExtensionsBundle()
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            //ManuelTranslationBundle()
+            new ManuelAguirre\Bundle\TranslationBundle\ManuelTranslationBundle(),
+
+            //FOSRestBundle()
+            new FOS\RestBundle\FOSRestBundle(),
+
+            //KnpMenuBundle()
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
+            //KnpPaginatorBundle()
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
+            //NelmioApiDocBundle()
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+
+            //JMSSerializerBundle()
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+
+            //FOSJsRoutingBundle()
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+
+            //IvoryCKEditorBundle()
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+
+            //LiuggioExcelBundle()
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+
+            //ObHighchartsBundle()
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
+
+            //LiipImagineBundle()
+            new \Liip\ImagineBundle\LiipImagineBundle(),
+
+            //WhiteOctoberTCPDFBundle()
+            new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
+
+            //GuzzleBundle()
+            new EightPoints\Bundle\GuzzleBundle\GuzzleBundle(),
+
             //AppBundle()
             new AppBundle\AppBundle(),
-
 
         );
 
