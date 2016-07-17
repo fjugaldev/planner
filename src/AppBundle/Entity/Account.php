@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Traits\TimestampableTrait;
 
 /**
  * Accounts
@@ -12,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Account
 {
+
+    use TimestampableTrait;
+
     /**
      * @var int
      *
