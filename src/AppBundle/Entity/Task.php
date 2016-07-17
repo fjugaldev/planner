@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Traits\TimestampableTrait;
 
 /**
- * Concepts
+ * Task
  *
- * @ORM\Table(name="concepts")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ConceptsRepository")
+ * @ORM\Table(name="task")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaskRepository")
  */
-class Concepts
+class Task
 {
 
     use TimestampableTrait;
@@ -28,23 +28,24 @@ class Concepts
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=150)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
 
     /**
-     * @var string
+     * @var $list
      *
-     * @ORM\Column(name="icon", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskList")
+     * @ORM\JoinColumn(name="list_id", referencedColumnName="id")
      */
-    private $icon;
+    private $list;
 
     /**
-     * @var int
+     * @var bool
      *
-     * @ORM\Column(name="parent", type="integer", nullable=true)
+     * @ORM\Column(name="is_done", type="boolean")
      */
-    private $parent;
+    private $isDone;
 
 
     /**
@@ -62,7 +63,7 @@ class Concepts
      *
      * @param string $name
      *
-     * @return Concepts
+     * @return Task
      */
     public function setName($name)
     {
@@ -82,51 +83,51 @@ class Concepts
     }
 
     /**
-     * Set icon
+     * Set list
      *
-     * @param string $icon
+     * @param integer $list
      *
-     * @return Concepts
+     * @return Task
      */
-    public function setIcon($icon)
+    public function setList($list)
     {
-        $this->icon = $icon;
+        $this->list = $list;
 
         return $this;
     }
 
     /**
-     * Get icon
-     *
-     * @return string
-     */
-    public function getIcon()
-    {
-        return $this->icon;
-    }
-
-    /**
-     * Set parent
-     *
-     * @param integer $parent
-     *
-     * @return Concepts
-     */
-    public function setParent($parent)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
+     * Get list
      *
      * @return int
      */
-    public function getParent()
+    public function getList()
     {
-        return $this->parent;
+        return $this->list;
+    }
+
+    /**
+     * Set isDone
+     *
+     * @param boolean $isDone
+     *
+     * @return Task
+     */
+    public function setIsDone($isDone)
+    {
+        $this->isDone = $isDone;
+
+        return $this;
+    }
+
+    /**
+     * Get isDone
+     *
+     * @return bool
+     */
+    public function getIsDone()
+    {
+        return $this->isDone;
     }
 }
 

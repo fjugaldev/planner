@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Traits\TimestampableTrait;
 
 /**
- * Concepts
+ * TransactionType
  *
- * @ORM\Table(name="concepts")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ConceptsRepository")
+ * @ORM\Table(name="transaction_type")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TransactionTypeRepository")
  */
-class Concepts
+class TransactionType
 {
 
     use TimestampableTrait;
@@ -28,7 +28,7 @@ class Concepts
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=150)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
 
@@ -40,11 +40,11 @@ class Concepts
     private $icon;
 
     /**
-     * @var int
+     * @var bool
      *
-     * @ORM\Column(name="parent", type="integer", nullable=true)
+     * @ORM\Column(name="is_active", type="boolean")
      */
-    private $parent;
+    private $isActive;
 
 
     /**
@@ -62,7 +62,7 @@ class Concepts
      *
      * @param string $name
      *
-     * @return Concepts
+     * @return TransactionType
      */
     public function setName($name)
     {
@@ -86,7 +86,7 @@ class Concepts
      *
      * @param string $icon
      *
-     * @return Concepts
+     * @return TransactionType
      */
     public function setIcon($icon)
     {
@@ -106,27 +106,27 @@ class Concepts
     }
 
     /**
-     * Set parent
+     * Set isActive
      *
-     * @param integer $parent
+     * @param boolean $isActive
      *
-     * @return Concepts
+     * @return TransactionType
      */
-    public function setParent($parent)
+    public function setIsActive($isActive)
     {
-        $this->parent = $parent;
+        $this->isActive = $isActive;
 
         return $this;
     }
 
     /**
-     * Get parent
+     * Get isActive
      *
-     * @return int
+     * @return bool
      */
-    public function getParent()
+    public function getIsActive()
     {
-        return $this->parent;
+        return $this->isActive;
     }
 }
 
